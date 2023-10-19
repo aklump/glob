@@ -1,6 +1,6 @@
 # Glob
 
-A replacement for http://www.php.net/manual/en/function.glob.php that uses [aklump/gitignore](https://github.com/aklump/gitignore) for `**` support.
+A replacement for http://www.php.net/manual/en/function.glob.php that provides support for `**`.
 
 ```php
 $matched_paths = (new \AKlump\Glob\Glob())('/foo/**/*.txt');
