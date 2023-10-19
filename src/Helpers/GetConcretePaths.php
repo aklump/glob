@@ -47,7 +47,9 @@ class GetConcretePaths {
     $symlink_handler = new HandleSymlinks();
     if (file_exists($path)) {
       $files = $symlink_handler($path);
-      $files = array_map(fn($path) => (new NormalizePath())($path), $files);
+      $files = array_map(function ($path) {
+        return (new NormalizePath())($path);
+      }, $files);
     }
     else {
       do {
@@ -89,7 +91,9 @@ class GetConcretePaths {
 
     sort($files);
     if ($return_only_directories) {
-      $files = array_filter($files, fn($file) => self::isDir($file));
+      $files = array_filter($files, function ($file) {
+        return self::isDir($file);
+      });
     }
 
     return $files;

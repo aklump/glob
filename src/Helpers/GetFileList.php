@@ -3,6 +3,7 @@
 namespace AKlump\Glob\Helpers;
 
 use Lead\Dir\Dir;
+use UnexpectedValueException;
 
 /**
  * Generate a list of all paths within a directory and all child directories.
@@ -12,7 +13,7 @@ class GetFileList {
   /**
    * @var float Time in microseconds used for the most-recent invocation.
    */
-  public float $duration;
+  public $duration;
 
   /**
    * @param string $start_dir
@@ -23,15 +24,17 @@ class GetFileList {
    */
   public function __invoke(string $start_dir): array {
     if (!file_exists($start_dir)) {
-      throw new \UnexpectedValueException(sprintf('%s does not exist.', $start_dir));
+      throw new UnexpectedValueException(sprintf('%s does not exist.', $start_dir));
     }
     if (!is_dir($start_dir)) {
-      throw new \UnexpectedValueException(sprintf('%s must be a directory.', $start_dir));
+      throw new UnexpectedValueException(sprintf('%s must be a directory.', $start_dir));
     }
     $this->duration = microtime(TRUE);
     $list = Dir::scan($start_dir);
     $list[] = $start_dir;
-    $list = array_map(fn($path) => (new NormalizePath($start_dir))($path), $list);
+    $list = array_map(function ($path) use ($start_dir) {
+      return (new NormalizePath($start_dir))($path);
+    }, $list);
     sort($list);
     $this->duration = microtime(TRUE) - $this->duration;
 

@@ -8,7 +8,7 @@ $matched_paths = (new \AKlump\Glob\Glob())('/foo/**/*.txt');
 
 ## Performance Considerations
 
-It is more performant to reuse a single instance as the filelist may be cached with each use. This is most performant:
+It is more performant to reuse a single instance as the file list may be cached with each use. This is most performant:
 
 ```php
 $globber = new \AKlump\Glob\Glob();

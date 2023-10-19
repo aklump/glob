@@ -6,7 +6,10 @@ use Psr\SimpleCache\CacheInterface;
 
 class Cache implements CacheInterface {
 
-  private array $bucket = [];
+  /**
+   * @var array
+   */
+  private $bucket = [];
 
   /**
    * @inheritDoc

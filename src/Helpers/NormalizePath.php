@@ -4,6 +4,7 @@ namespace AKlump\Glob\Helpers;
 
 use AKlump\Glob\Traits\HasBasePathTrait;
 use Symfony\Component\Filesystem\Path;
+use RuntimeException;
 
 /**
  * This class should be used instead Symfony's methods listed below.
@@ -31,7 +32,7 @@ class NormalizePath {
     $path = Path::normalize($path);
     if (!Path::isAbsolute($path)) {
       if (empty($this->getBasePath())) {
-        throw new \RuntimeException(sprintf('Since %s::basePath is empty, $path must be absolute. %s is not.', static::class, $path));
+        throw new RuntimeException(sprintf('Since %s::basePath is empty, $path must be absolute. %s is not.', static::class, $path));
       }
       $path = Path::makeAbsolute($path, $this->getBasePath());
     }

@@ -14,8 +14,8 @@ class Glob {
   }
 
   /**
-   * @param \AKlump\Glob\string $pattern
-   * @param \AKlump\Glob\int $flags
+   * @param string $pattern
+   * @param int $flags
    *
    * @return array|false
    */

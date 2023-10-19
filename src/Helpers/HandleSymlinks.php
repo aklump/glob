@@ -16,7 +16,7 @@ class HandleSymlinks {
     return $this->recursiveResolver($path);
   }
 
-  private function recursiveResolver($value, array &$files = []) {
+  private function recursiveResolver($value, array &$files = []): array {
     $files[] = (new NormalizePath())($value);
     if (is_link($value)) {
       $target = dirname($value) . '/' . readlink($value);

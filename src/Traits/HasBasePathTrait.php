@@ -5,10 +5,14 @@ namespace AKlump\Glob\Traits;
 
 use AKlump\GitIgnore\Analyzer;
 use Symfony\Component\Filesystem\Path;
+use InvalidArgumentException;
 
 trait HasBasePathTrait {
 
-  private string $basePath = '';
+  /**
+   * @var string
+   */
+  private $basePath = '';
 
   public function __construct(string $base_path = '') {
     if ($base_path) {
@@ -22,10 +26,10 @@ trait HasBasePathTrait {
 
   public function setBasePath(string $base_path): self {
     if (empty($base_path)) {
-      throw new \InvalidArgumentException(sprintf('$base_path cannot be empty.'));
+      throw new InvalidArgumentException('$base_path cannot be empty.');
     }
-    if ($base_path && Analyzer::containsPattern($base_path)) {
-      throw new \InvalidArgumentException(sprintf('$base_path cannot contain unmatched patterns: %s', $base_path));
+    if (Analyzer::containsPattern($base_path)) {
+      throw new InvalidArgumentException(sprintf('$base_path cannot contain unmatched patterns: %s', $base_path));
     }
     $this->basePath = Path::normalize($base_path);
 
