@@ -2,6 +2,7 @@
 
 namespace AKlump\Glob;
 
+use AKlump\GitIgnore\Pattern;
 use AKlump\Glob\Helpers\Cache;
 use AKlump\Glob\Helpers\GetConcretePaths;
 use Symfony\Component\Filesystem\Path;
@@ -12,7 +13,14 @@ class Glob {
 
   private static $glob;
 
-  public static function glob(string $path_pattern) {
+  /**
+   * Locates files in the CWD based on $path_pattern
+   *
+   * @param string $path_pattern The glob pattern to search CWD with.
+   *
+   * @return array
+   */
+  public static function glob(string $path_pattern): array {
     if (!isset(static::$glob)) {
       // I wonder if there is every a reason that a single static instance will
       // cause problems due to caching.  Do we need a way to clear this out,
@@ -21,6 +29,18 @@ class Glob {
     }
 
     return static::$glob->__invoke($path_pattern);
+  }
+
+  /**
+   * Matches a given URL against a pattern.
+   *
+   * @param string $subject The path to match against the pattern.
+   * @param string $glob The pattern to match with.
+   *
+   * @return bool Returns true if the URL matches the provided pattern, false otherwise.
+   */
+  public static function match(string $subject, string $glob): bool {
+    return (new Pattern($glob))->matches($subject);
   }
 
   public function __construct() {
@@ -33,9 +53,9 @@ class Glob {
    * @param string $pattern
    *   The can be absolute or relative.
    *
-   * @return array|false
+   * @return array
    */
-  public function __invoke(string $path_pattern) {
+  public function __invoke(string $path_pattern): array {
     if (Path::isRelative($path_pattern)) {
       $this->makeAbsolute($path_pattern);
     }

@@ -12,6 +12,30 @@ class GlobTest extends \PHPUnit\Framework\TestCase {
 
   use TestWithFilesTrait;
 
+  public function dataFortestMatchProvider() {
+    $tests = [];
+    $tests[] = [
+      TRUE,
+      '/foo/bar',
+      '/*/bar',
+    ];
+    $tests[] = [
+      FALSE,
+      '/foo/lorem',
+      '/*/bar',
+    ];
+
+    return $tests;
+  }
+
+  /**
+   * @dataProvider dataFortestMatchProvider
+   */
+  public function testMatch(bool $expected, string $url, string $glob) {
+    $result = Glob::match($url, $glob);
+    $this->assertSame($expected, $result);
+  }
+
   public function dataForInvokeProvider() {
     $tests = [];
     $tests[] = [
