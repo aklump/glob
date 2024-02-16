@@ -45,10 +45,35 @@ class GlobTest extends \PHPUnit\Framework\TestCase {
   /**
    * @dataProvider dataForInvokeProvider
    */
+  public function testGlobStaticMethodWithAbsolutePaths(string $relative_glob, array $expected_relative_paths) {
+    $base = $this->getTestFilesDirectory();
+    $files = Glob::glob($base . $relative_glob);
+    $this->assertCount(count($expected_relative_paths), $files);
+    foreach ($expected_relative_paths as $expected_path) {
+      $this->assertContains($base . $expected_path, $files);
+    }
+  }
+
+  /**
+   * @dataProvider dataForInvokeProvider
+   */
   public function testInvokeWithRelativePaths(string $relative_glob, array $expected_relative_paths) {
     $base = $this->getTestFilesDirectory();
     $this->assertTrue(chdir($base));
     $files = (new Glob())($relative_glob);
+    $this->assertCount(count($expected_relative_paths), $files);
+    foreach ($expected_relative_paths as $expected_path) {
+      $this->assertContains($base . $expected_path, $files);
+    }
+  }
+
+  /**
+   * @dataProvider dataForInvokeProvider
+   */
+  public function testStaticGlobMethodWithRelativePaths(string $relative_glob, array $expected_relative_paths) {
+    $base = $this->getTestFilesDirectory();
+    $this->assertTrue(chdir($base));
+    $files = Glob::glob($relative_glob);
     $this->assertCount(count($expected_relative_paths), $files);
     foreach ($expected_relative_paths as $expected_path) {
       $this->assertContains($base . $expected_path, $files);
