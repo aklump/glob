@@ -27,7 +27,7 @@
   },
   "require": {
     "php": ">=7.3",
-    "aklump/gitignore": "^0.0.1",
+    "aklump/gitignore": "^0.0",
     "symfony/filesystem": "^5.4",
     "crysalead/dir": "^2.0",
     "psr/simple-cache": "^1.0"
