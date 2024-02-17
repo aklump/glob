@@ -60,7 +60,23 @@ class Glob {
       $this->makeAbsolute($path_pattern);
     }
 
+    if ($this->canUseCoreFunction($path_pattern)) {
+      // This is more performant, and we use it if we can.
+      return glob($path_pattern, GLOB_MARK);
+    }
+
     return (new GetConcretePaths($this->cache))($path_pattern);
+  }
+
+  /**
+   * Checks if a given glob pattern is supported by the native function.
+   *
+   * @param string $path_pattern The path pattern to check.
+   *
+   * @return bool Returns true if glob() can be used.
+   */
+  private function canUseCoreFunction(string $path_pattern): bool {
+    return !strstr($path_pattern, '**');
   }
 
   private function makeAbsolute(string &$path_pattern) {
