@@ -2,6 +2,7 @@
   "name": "aklump/glob",
   "description": "File and directory path globbing.",
   "homepage": "https://github.com/aklump/glob",
+  "license": "BSD-3-Clause",
   "authors": [
     {
       "name": "Aaron Klump",
