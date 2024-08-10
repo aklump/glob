@@ -2,13 +2,20 @@
 
 namespace AKlump\Glob\Tests\Unit;
 
-use AKlump\Glob\Tests\Unit\TestWithFilesTrait;
 use AKlump\Glob\Glob;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \AKlump\Glob\Glob
+ * @uses \AKlump\Glob\Helpers\Cache
+ * @uses \AKlump\Glob\Helpers\GetConcretePaths
+ * @uses \AKlump\Glob\Helpers\GetFileList
+ * @uses \AKlump\Glob\Helpers\HandleSymlinks
+ * @uses \AKlump\Glob\Helpers\NormalizePath
+ * @uses \AKlump\Glob\Traits\HasBasePathTrait
+ * @uses \AKlump\Glob\Traits\PathHandlerTrait
  */
-class GlobTest extends \PHPUnit\Framework\TestCase {
+class GlobTest extends TestCase {
 
   use TestWithFilesTrait;
 

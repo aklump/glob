@@ -11,20 +11,7 @@ $glob = new \AKlump\Glob\Glob()
 $matched_paths = $glob('/foo/**/*.txt');
 ```
 
-## Install with Composer
-
-1. Because this is an unpublished package, you must define it's repository in your project's _composer.json_ file. Add the following to _composer.json_:
-
-    ```json
-    "repositories": [
-        {
-            "type": "github",
-            "url": "https://github.com/aklump/glob"
-        }
-    ]
-    ```
-
-1. Then `composer require aklump/glob:^0.0`    
+{{ composer.install|raw }}
 
 ## Other Packages
 

@@ -5,6 +5,11 @@ namespace AKlump\Glob;
 use AKlump\GitIgnore\Pattern;
 use AKlump\Glob\Helpers\Cache;
 use AKlump\Glob\Helpers\GetConcretePaths;
+
+if (!class_exists('\Symfony\Component\Filesystem\Path')) {
+  class_alias('\AKlump\Glob\Filesystem\Path', '\Symfony\Component\Filesystem\Path');
+}
+
 use Symfony\Component\Filesystem\Path;
 
 class Glob {
