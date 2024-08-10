@@ -11,7 +11,7 @@ $glob = new \AKlump\Glob\Glob()
 $matched_paths = $glob('/foo/**/*.txt');
 ```
 
-{{ composer.install|raw }}
+{{ composer_install|raw }}
 
 ## Other Packages
 
