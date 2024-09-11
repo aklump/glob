@@ -7,13 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \AKlump\Glob\Glob
- * @uses \AKlump\Glob\Helpers\Cache
- * @uses \AKlump\Glob\Helpers\GetConcretePaths
- * @uses \AKlump\Glob\Helpers\GetFileList
- * @uses \AKlump\Glob\Helpers\HandleSymlinks
- * @uses \AKlump\Glob\Helpers\NormalizePath
- * @uses \AKlump\Glob\Traits\HasBasePathTrait
- * @uses \AKlump\Glob\Traits\PathHandlerTrait
+ * @uses   \AKlump\Glob\Helpers\Cache
+ * @uses   \AKlump\Glob\Helpers\GetConcretePaths
+ * @uses   \AKlump\Glob\Helpers\GetFileList
+ * @uses   \AKlump\Glob\Helpers\HandleSymlinks
+ * @uses   \AKlump\Glob\Helpers\NormalizePath
+ * @uses   \AKlump\Glob\Traits\HasBasePathTrait
+ * @uses   \AKlump\Glob\Traits\PathHandlerTrait
  */
 class GlobTest extends TestCase {
 

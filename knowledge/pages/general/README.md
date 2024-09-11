@@ -11,13 +11,13 @@ A replacement for http://www.php.net/manual/en/function.glob.php that provides s
 $matched_paths = \AKlump\Glob\Glob::glob('/foo/**/*.txt');
 ```
 
-You can also create multiple, single instances, however each new instance has it's own, separate cache bin. Therefore in the example below, calling `$glob1` (which caches the filesystem) and then calling `$glob2` will take longer than calling `$glob1` a second time (because the filesystem will be re-cached by `$glob2`).
+In some cases you may be able to achieve better performance by reusing a single instance as shown below.  The reason is that each instance generates a file cache when it's first called.  The downside is that you MUST manage the cache yourself, that is, if the file system changes, you must use a new instance.  And that coordination is up to you.  **By using the static `::glob` method, you do not need to manage caching, as each call produces a new instance.**
 
 ```php
-$glob1 = new \AKlump\Glob\Glob();
-$matched_paths = $glob1('/foo/**/*.txt');
-$glob2 = new \AKlump\Glob\Glob();
-$matched_paths = $glob2('/foo/**/*.txt');
+$glob = new \AKlump\Glob\Glob();
+$matched_paths = $glob('/foo/**/*.txt');
+// This second call will rely on the internal cache of $glob and is theoretically faster.
+$matched_paths = $glob('/foo/**/*.md');
 ```
 
 {{ composer.install|raw }}

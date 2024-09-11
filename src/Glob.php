@@ -26,14 +26,7 @@ class Glob {
    * @return array
    */
   public static function glob(string $path_pattern): array {
-    if (!isset(static::$glob)) {
-      // I wonder if there is every a reason that a single static instance will
-      // cause problems due to caching.  Do we need a way to clear this out,
-      // maybe make it public?  I'll wait and see.
-      static::$glob = new self();
-    }
-
-    return static::$glob->__invoke($path_pattern);
+    return (new self())($path_pattern);
   }
 
   /**
