@@ -45,7 +45,7 @@ Array
 
 ## Requirements
 
-PHP 7.3 or newer. The unit tests are run against 7.3, 7.4, 8.0, 8.1 and 8.2 by `bin/run_multi_php_unit_tests.sh`.
+PHP 7.3 or newer. The unit tests are run against 7.3, 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 and 8.5 by `bin/run-multi-phpunit-tests.sh`.
 
 Everything else arrives through Composer: `aklump/gitignore` for pattern matching, plus `symfony/filesystem`, `crysalead/dir` and `psr/simple-cache`. No PHP extension has to be enabled and there is no binary to install. Symfony's `Path` class did not exist before `symfony/filesystem` 5.4, so this package ships its own and aliases it in when Symfony's is absent; `^4` works as well as `^6.4`.
 
@@ -70,7 +70,7 @@ composer install
 OK (14 tests, 32 assertions)
 ```
 
-`bin/run_unit_tests.sh` runs the same suite and writes an HTML coverage report to `reports/html`, which needs Xdebug or PCOV. `bin/run_multi_php_unit_tests.sh` runs it under every supported PHP version and needs `aklump/phpswap`.
+`bin/run-phpunit-tests.sh` runs the same suite and writes an HTML coverage report to `reports/html`, which needs Xdebug or PCOV. `bin/run-multi-phpunit-tests.sh` runs it under every supported PHP version and needs `aklump/phpswap`.
 
 ## Usage
 
