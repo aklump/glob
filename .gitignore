@@ -4,3 +4,4 @@ vendor/
 feature*
 *.jig*
 /reports/
+/.readme-shine.yml
